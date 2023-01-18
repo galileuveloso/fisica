@@ -1,4 +1,4 @@
-﻿namespace FisicaAula.Enums
+﻿namespace FisicaUsuario.Enums
 {
     public enum TipoUsuario
     {

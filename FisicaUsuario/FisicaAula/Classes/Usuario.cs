@@ -1,6 +1,6 @@
-﻿using FisicaAula.Enums;
+﻿using FisicaUsuario.Enums;
 
-namespace FisicaAula.Classes
+namespace FisicaUsuario.Classes
 {
     public class Usuario : Entity
     {

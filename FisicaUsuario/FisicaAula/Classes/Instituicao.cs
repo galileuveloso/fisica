@@ -1,4 +1,4 @@
-﻿namespace FisicaAula.Classes
+﻿namespace FisicaUsuario.Classes
 {
     public class Instituicao : Entity
     {

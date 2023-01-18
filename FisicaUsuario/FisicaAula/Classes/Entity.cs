@@ -1,4 +1,4 @@
-﻿namespace FisicaAula.Classes
+﻿namespace FisicaUsuario.Classes
 {
     public abstract class Entity
     {

@@ -6,6 +6,7 @@ namespace FisicaUsuario.Api.Helpers
     public static class MessageHelper
     {
         public static string NotFoundFor<T>(T o, Expression<Func<T, object>> property) => $"{typeof(T).Name}.{GetName(property)}: '{GetValue(o, property)}' não encontrado.";
+        public static string NotFoundFor<T>() => $"{typeof(T).Name} não encontrado.";
 
         public static string InvalidFor<T>(T o, Expression<Func<T, object>> property) => $"{typeof(T).Name}.{GetName(property)}: '{GetValue(o, property)}' inválido.";
 
