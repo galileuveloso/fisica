@@ -1,6 +1,8 @@
-﻿using FisicaUsuario.Api.Features.InstituicaoFeature.Queries;
+﻿using FisicaUsuario.Api.Features.InstituicaoFeature.Commands;
+using FisicaUsuario.Api.Features.InstituicaoFeature.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity.Core;
 
 namespace FisicaUsuario.Api.Features.InstituicaoFeature
 {
@@ -25,6 +27,23 @@ namespace FisicaUsuario.Api.Features.InstituicaoFeature
             catch (ArgumentNullException ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(DeletarInstituicaoCommand request)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(request));
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ObjectNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
     }

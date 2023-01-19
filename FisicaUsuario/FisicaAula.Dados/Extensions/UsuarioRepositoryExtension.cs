@@ -12,7 +12,7 @@ namespace FisicaUsuario.Dados.Extensions
 
             long? id = await repository.Connection.QuerySingleOrDefaultAsync<long?>(sql, new { Login = login, Senha = senha });
 
-            return await repository.GetFirstAsync(x => x.Id == id);
+            return await repository.GetSingletAsync(x => x.Id == id);
         }
     }
 }

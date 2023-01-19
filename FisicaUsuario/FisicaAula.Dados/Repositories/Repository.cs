@@ -36,11 +36,11 @@ namespace FisicaUsuario.Dados.Repositories
         }
 
         public virtual async Task<T> GetFirstAsync(Expression<Func<T, bool>> lambda, params Expression<Func<T, object>>[] joins) => await Query(joins).FirstOrDefaultAsync(lambda);
+       
+        public virtual async Task<T> GetSingleAsync(Expression<Func<T, bool>> lambda, params Expression<Func<T, object>>[] joins) => await Query(joins).SingleOrDefaultAsync(lambda);
 
-        public virtual async Task<bool> ExistsAsync(Expression<Func<T, bool>> lambda)
-        {
-            return await Query().AnyAsync(lambda);
-        }
+        public virtual async Task<bool> ExistsAsync(Expression<Func<T, bool>> lambda) => await Query().AnyAsync(lambda);
+        
 
         public virtual async Task AddAsync(T entity)
         {

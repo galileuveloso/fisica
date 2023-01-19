@@ -1,4 +1,4 @@
-﻿using FisicaUsuario.Api.Features.User.Commands;
+﻿using FisicaUsuario.Api.Features.UsuarioFeature.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Entity.Core;
