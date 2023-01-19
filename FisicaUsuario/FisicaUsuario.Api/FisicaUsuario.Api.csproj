@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Features\Instituicao\Commands\" />
     <Folder Include="Features\Usuario\Queries\" />
   </ItemGroup>
 

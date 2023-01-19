@@ -1,11 +1,11 @@
 ﻿using FisicaUsuario.Api.Helpers;
+using FisicaUsuario.Classes;
 using FisicaUsuario.Dados.Extensions;
 using FisicaUsuario.Interfaces;
 using MediatR;
 using System.Data.Entity.Core;
-using FisicaUsuario.Classes;
 
-namespace FisicaUsuario.Api.Features.User.Commands
+namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
 {
     public class LoginCommand : IRequest<Usuario>
     {

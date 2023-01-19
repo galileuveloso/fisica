@@ -1,23 +1,22 @@
-﻿using FisicaUsuario.Api.Features.User.Commands;
+﻿using FisicaUsuario.Api.Features.InstituicaoFeature.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity.Core;
 
-namespace FisicaUsuario.Api.Features.UsuarioFeature
+namespace FisicaUsuario.Api.Features.InstituicaoFeature
 {
-    [Route("usuario")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    [Route("instituicao")]
+    public class InstituicaoController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public UsuarioController(IMediator mediator)
+        public InstituicaoController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult> Login(LoginCommand request)
+        [HttpGet]
+        public async Task<ActionResult> Get(SelecionarInstituicoesQuery request)
         {
             try
             {
@@ -26,10 +25,6 @@ namespace FisicaUsuario.Api.Features.UsuarioFeature
             catch (ArgumentNullException ex)
             {
                 return BadRequest(ex.Message);
-            }
-            catch (ObjectNotFoundException ex)
-            {
-                return NotFound(ex.Message);
             }
         }
     }
