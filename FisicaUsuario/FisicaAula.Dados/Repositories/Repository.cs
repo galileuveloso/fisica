@@ -23,38 +23,38 @@ namespace FisicaUsuario.Dados.Repositories
             return joins == null ? query : joins.Aggregate(query, (current, include) => current.Include(include));
         }
 
-        public virtual async Task<IEnumerable<T>> GetAsync(params Expression<Func<T, object>>[] joins)
+        public virtual async Task<IEnumerable<T>> GetAsync(CancellationToken cancellationToken, params Expression<Func<T, object>>[] joins)
         {
-            return await Query(joins).ToListAsync();
+            return await Query(joins).ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> lambda, params Expression<Func<T, object>>[] joins)
+        public virtual async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> lambda, CancellationToken cancellationToken, params Expression<Func<T, object>>[] joins)
         {
             return await Query(joins)
                 .Where(lambda)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<T> GetFirstAsync(Expression<Func<T, bool>> lambda, params Expression<Func<T, object>>[] joins) => await Query(joins).FirstOrDefaultAsync(lambda);
-       
-        public virtual async Task<T> GetSingleAsync(Expression<Func<T, bool>> lambda, params Expression<Func<T, object>>[] joins) => await Query(joins).SingleOrDefaultAsync(lambda);
+        public virtual async Task<T> GetFirstAsync(Expression<Func<T, bool>> lambda, CancellationToken cancellationToken, params Expression<Func<T, object>>[] joins) => await Query(joins).FirstOrDefaultAsync(lambda, cancellationToken);
 
-        public virtual async Task<bool> ExistsAsync(Expression<Func<T, bool>> lambda) => await Query().AnyAsync(lambda);
-        
+        public virtual async Task<T> GetSingleAsync(Expression<Func<T, bool>> lambda, CancellationToken cancellationToken, params Expression<Func<T, object>>[] joins) => await Query(joins).SingleOrDefaultAsync(lambda, cancellationToken);
 
-        public virtual async Task AddAsync(T entity)
+        public virtual async Task<bool> ExistsAsync(Expression<Func<T, bool>> lambda, CancellationToken cancellationToken) => await Query().AnyAsync(lambda, cancellationToken);
+
+
+        public virtual async Task AddAsync(T entity, CancellationToken cancellationToken)
         {
             await _context
                 .Set<T>()
-                .AddAsync(entity)
+                .AddAsync(entity, cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        public virtual async Task AddCollectionAsync(IEnumerable<T> entities)
+        public virtual async Task AddCollectionAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
             await _context
                 .Set<T>()
-                .AddRangeAsync(entities)
+                .AddRangeAsync(entities, cancellationToken)
                 .ConfigureAwait(false);
         }
 
@@ -82,10 +82,10 @@ namespace FisicaUsuario.Dados.Repositories
             return Task.CompletedTask;
         }
 
-        public virtual async Task SaveChangesAsync()
+        public virtual async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             await _context
-                .SaveChangesAsync()
+                .SaveChangesAsync(cancellationToken)
                 .ConfigureAwait(false);
         }
 

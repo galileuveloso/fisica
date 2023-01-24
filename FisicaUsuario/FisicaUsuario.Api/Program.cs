@@ -1,3 +1,9 @@
+using FisicaUsuario.Classes;
+using FisicaUsuario.Dados.Repositories;
+using FisicaUsuario.Interfaces;
+using MediatR;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,8 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddScoped(typeof(IRepository<Favorito>), typeof(Repository<Favorito>));
+builder.Services.AddScoped(typeof(IRepository<Instituicao>), typeof(Repository<Instituicao>));
+builder.Services.AddScoped(typeof(IRepository<Perfil>), typeof(Repository<Perfil>));
+builder.Services.AddScoped(typeof(IRepository<Usuario>), typeof(Repository<Usuario>));
+builder.Services.AddScoped(typeof(IRepository<Widget>), typeof(Repository<Widget>));
 
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

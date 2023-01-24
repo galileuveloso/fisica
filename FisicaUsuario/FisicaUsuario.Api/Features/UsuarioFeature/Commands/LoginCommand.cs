@@ -30,14 +30,14 @@ namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
 
         public async Task<Usuario> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
+            if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<LoginCommand>());
 
             request.Validate();
 
-            Usuario? usuario = await _repository.ObterUsuarioPorLogin(request.Login!, request.Senha!);
+            Usuario? usuario = await _repository.ObterUsuarioPorLogin(request.Login!, request.Senha!, cancellationToken);
 
-            if (usuario == null)
+            if (usuario is null)
                 throw new ObjectNotFoundException(MessageHelper.NotFoundFor<Usuario>());
 
             return usuario;
