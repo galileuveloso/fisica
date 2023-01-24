@@ -1,4 +1,5 @@
-﻿using FisicaUsuario.Api.Helpers;
+﻿using FisicaUsuario.Api.Extensions;
+using FisicaUsuario.Api.Helpers;
 using FisicaUsuario.Classes;
 using FisicaUsuario.Dados.Extensions;
 using FisicaUsuario.Interfaces;
@@ -7,7 +8,7 @@ using System.Data.Entity.Core;
 
 namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
 {
-    public class LoginCommand : IRequest<Usuario>
+    public class LoginCommand : IRequest<UsuarioResponse>
     {
         public string? Login { get; set; }
         public string? Senha { get; set; }
@@ -19,7 +20,14 @@ namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
         }
     }
 
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, Usuario>
+    public class UsuarioResponse
+    {
+        public long UsuarioId { get; set; }
+        public string Nome { get; set; }
+        public int TipoUsuario { get; set; }
+    }
+
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, UsuarioResponse>
     {
         private readonly IRepository<Usuario> _repository;
 
@@ -28,7 +36,7 @@ namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
             _repository = repository;
         }
 
-        public async Task<Usuario> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<UsuarioResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<LoginCommand>());
@@ -38,9 +46,9 @@ namespace FisicaUsuario.Api.Features.UsuarioFeature.Commands
             Usuario? usuario = await _repository.ObterUsuarioPorLogin(request.Login!, request.Senha!, cancellationToken);
 
             if (usuario is null)
-                throw new ObjectNotFoundException(MessageHelper.NotFoundFor<Usuario>());
+                throw new ObjectNotFoundException("Usuário não encontrado.");
 
-            return usuario;
+            return usuario.ToResponse();
         }
     }
 }
