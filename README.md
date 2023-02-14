@@ -1,2 +1,2 @@
-# fisica-usuario
-Micro Serviço Usuário
+# fisica
+Backend do projeto de TCC 'Sociedade da Fisica'
