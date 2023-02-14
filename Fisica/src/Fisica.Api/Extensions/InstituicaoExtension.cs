@@ -28,10 +28,10 @@ namespace Fisica.Api.Extensions
                 Site = request.Site!,
                 Endereco = new()
                 {
-                    Bairro = request.Bairro!,
-                    Logradouro = request.Logradouro!,
-                    Numero = request.Numero!.Value,
-                    CidadeId = request.CidadeId!.Value
+                    Bairro = request.Endereco.Bairro!,
+                    Logradouro = request.Endereco.Logradouro!,
+                    Numero = request.Endereco.Numero,
+                    CidadeId = request.Endereco.CidadeId
                 }
             };
         }
@@ -46,9 +46,9 @@ namespace Fisica.Api.Extensions
                 Site = domain.Site,
                 Logradouro = domain.Endereco.Logradouro,
                 Bairro = domain.Endereco.Bairro,
-                Cidade = domain.Endereco.Cidade.Nome,//ver se essa carregou
+                Cidade = domain.Endereco.Cidade?.Nome,
                 Numero = domain.Endereco.Numero,
-                UF = domain.Endereco.Cidade.UF//ver se essa carregou
+                UF = domain.Endereco.Cidade?.UF
             };
         }
 

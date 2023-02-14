@@ -5,6 +5,7 @@ using Fisica.Classes;
 using Fisica.Domains;
 using Fisica.Enums;
 using Fisica.Interfaces;
+using Fisica.Models;
 using MediatR;
 using System.Data;
 using System.Data.Entity.Core;
@@ -18,11 +19,7 @@ namespace Fisica.Api.Features.InstituicaoFeature.Commands
         public string? Descricao { get; set; }
         public string? Email { get; set; }
         public string? Site { get; set; }
-        public string? Logradouro { get; set; }
-        public string? Bairro { get; set; }
-        public int? Numero { get; set; }
-        public long? CidadeId { get; set; }
-        public string? UF { get; set; }
+        public EnderecoModel Endereco { get; set; }
 
         public void Validar()
         {
@@ -31,11 +28,7 @@ namespace Fisica.Api.Features.InstituicaoFeature.Commands
             if (String.IsNullOrEmpty(Descricao)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Descricao));
             if (String.IsNullOrEmpty(Email)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Email));
             if (String.IsNullOrEmpty(Site)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Site));
-            if (String.IsNullOrEmpty(Logradouro)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Logradouro));
-            if (String.IsNullOrEmpty(Bairro)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Bairro));
-            if (Numero is null || Numero!.Value == 0) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Numero));
-            if (CidadeId is null || CidadeId!.Value == 0) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.CidadeId));
-            if (String.IsNullOrEmpty(UF)) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.UF));
+            if (Endereco is null) throw new ArgumentNullException(MessageHelper.NullFor<InserirInstituicaoCommand>(x => x.Endereco));
         }
     }
 
@@ -73,7 +66,7 @@ namespace Fisica.Api.Features.InstituicaoFeature.Commands
             if (await _repositoryInstituicao.ExistsAsync(x => x.Email.Equals(request.Email), cancellationToken))
                 throw new DuplicateNameException("Já existe uma instituição com este e-mail.");
 
-            if (!await _repositoryCidade.ExistsAsync(x => x.Id == request.CidadeId!.Value, cancellationToken))
+            if (!await _repositoryCidade.ExistsAsync(x => x.Id == request.Endereco!.CidadeId, cancellationToken))
                 throw new ObjectNotFoundException("Cidade não encontrada.");
 
             Instituicao instituicao = request.ToDomain();

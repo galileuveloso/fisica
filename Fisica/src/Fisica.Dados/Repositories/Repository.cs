@@ -1,8 +1,8 @@
 ﻿using Fisica.Classes;
 using Fisica.Interfaces;
 using System.Data.Common;
-using System.Data.Entity;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fisica.Dados.Repositories
 {
