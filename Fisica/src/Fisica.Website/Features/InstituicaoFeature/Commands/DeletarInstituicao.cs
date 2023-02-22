@@ -14,7 +14,6 @@ namespace Fisica.Website.Features.InstituicaoFeature.Commands
 
         public void Validate()
         {
-            if (UsuarioId is null) throw new ArgumentNullException(MessageHelper.NullFor<DeletarInstituicaoCommand>(x => x.UsuarioId));
             if (InstituicaoId is null) throw new ArgumentNullException(MessageHelper.NullFor<DeletarInstituicaoCommand>(x => x.InstituicaoId));
         }
     }
@@ -36,6 +35,8 @@ namespace Fisica.Website.Features.InstituicaoFeature.Commands
                 throw new ArgumentNullException(MessageHelper.NullFor<DeletarInstituicaoCommand>());
 
             request.Validate();
+
+            request.UsuarioId = 1;
 
             Usuario? usuario = await _repositoryUsuario.GetSingleAsync(x => x.Id == request.UsuarioId!.Value, cancellationToken);
 

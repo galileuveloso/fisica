@@ -17,10 +17,10 @@ namespace Fisica.Website.Features.InstituicaoFeature
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        [HttpGet("selecionar/{usuarioid}")]
-        public async Task<ActionResult> Get(long? usuarioId)
+        [HttpGet("buscar-instituicoes")]
+        public async Task<ActionResult> Get()
         {
-            return await this.SendAsync(_mediator, new SelecionarInstituicoesQuery() { UsuarioId = usuarioId });
+            return await this.SendAsync(_mediator, new SelecionarInstituicoesQuery());
         }
 
         [HttpPost("inserir")]
@@ -35,10 +35,10 @@ namespace Fisica.Website.Features.InstituicaoFeature
             return await this.SendAsync(_mediator, request);
         }
 
-        [HttpDelete("deletar")]
-        public async Task<ActionResult> Delete(DeletarInstituicaoCommand request)
+        [HttpDelete("excluir/{id}")]
+        public async Task<ActionResult> Delete(long id)
         {
-            return await this.SendAsync(_mediator, request);
+            return await this.SendAsync(_mediator, new DeletarInstituicaoCommand() { InstituicaoId = id });
         }
     }
 }

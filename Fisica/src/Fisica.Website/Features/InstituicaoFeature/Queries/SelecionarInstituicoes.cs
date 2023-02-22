@@ -5,6 +5,7 @@ using Fisica.Enums;
 using Fisica.Interfaces;
 using MediatR;
 using System.Data.Entity.Core;
+using Fisica.Models;
 
 namespace Fisica.Website.Features.InstituicaoFeature.Queries
 {
@@ -13,21 +14,17 @@ namespace Fisica.Website.Features.InstituicaoFeature.Queries
         public long? UsuarioId { get; set; }
         public void Validate()
         {
-            if (UsuarioId is null || UsuarioId!.Value == 0) throw new ArgumentNullException(MessageHelper.NullFor<SelecionarInstituicoesQuery>(x => x.UsuarioId));
         }
     }
 
     public class InstituicaoResponse
     {
+        public long Id { get; set; }
         public string? Nome { get; set; }
         public string? Descricao { get; set; }
         public string? Email { get; set; }
         public string? Site { get; set; }
-        public string? Logradouro { get; set; }
-        public string? Bairro { get; set; }
-        public int? Numero { get; set; }
-        public string? Cidade { get; set; }
-        public string? UF { get; set; }
+        public EnderecoModel Endereco { get; set; }
     }
 
     public class SelecionarInstituicoes : IRequestHandler<SelecionarInstituicoesQuery, IEnumerable<InstituicaoResponse>>
@@ -48,13 +45,15 @@ namespace Fisica.Website.Features.InstituicaoFeature.Queries
 
             request.Validate();
 
+            request.UsuarioId = 1;
+
             if (!await _repositoryUsuario.ExistsAsync(x => x.Id == request.UsuarioId, cancellationToken))
                 throw new ObjectNotFoundException("Usuário não encontrado.");
 
             if (!await _repositoryUsuario.ExistsAsync(x => x.Id == request.UsuarioId && x.TipoUsuario == (int)TipoUsuario.Adminstrador, cancellationToken))
                 throw new InvalidOperationException("Usuário informado não tem acesso as instituições.");
 
-            return (await _repository.GetAsync(cancellationToken)).ToResponse();
+            return (await _repository.GetAsync(cancellationToken, x => x.Endereco.Cidade)).ToResponse();
         }
     }
 }

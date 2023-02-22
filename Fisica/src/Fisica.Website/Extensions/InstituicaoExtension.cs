@@ -40,15 +40,23 @@ namespace Fisica.Website.Extensions
         {
             return new()
             {
+                Id = domain.Id,
                 Nome = domain.Nome,
                 Descricao = domain.Descricao,
                 Email = domain.Email,
                 Site = domain.Site,
-                Logradouro = domain.Endereco.Logradouro,
-                Bairro = domain.Endereco.Bairro,
-                Cidade = domain.Endereco.Cidade?.Nome,
-                Numero = domain.Endereco.Numero,
-                UF = domain.Endereco.Cidade?.UF
+                Endereco = new() 
+                {
+                    Logradouro = domain.Endereco.Logradouro,
+                    Bairro = domain.Endereco.Bairro,
+                    Cidade = new()
+                    {
+                        Id = domain.Endereco.Cidade.Id,
+                        Nome = domain.Endereco.Cidade.Nome,
+                        UF = domain.Endereco.Cidade.UF
+                    }, 
+                    Numero = domain.Endereco.Numero
+                }
             };
         }
 

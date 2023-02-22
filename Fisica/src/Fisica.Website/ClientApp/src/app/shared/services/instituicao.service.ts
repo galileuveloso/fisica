@@ -16,4 +16,12 @@ export class InstituicaoService extends AbstractHttpService {
   public inserir(instituicao: Instituicao): Observable<Instituicao> {
     return this.post<Instituicao>('inserir', instituicao);
   }
+
+  public getInstituicoes(): Observable<Instituicao[]> {
+    return this.get<Instituicao[]>('buscar-instituicoes');
+  }
+
+  public excluir(id: number): Observable<any> {
+    return this.delete<any>(`excluir/${id}`);
+  }
 }

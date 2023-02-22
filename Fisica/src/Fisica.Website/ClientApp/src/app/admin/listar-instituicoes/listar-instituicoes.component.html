@@ -1,1 +1,23 @@
-<p>listar-instituicoes works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>Site</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let instituicao of instituicoes">
+          <td> {{ instituicao.nome }} </td>
+          <td> {{ instituicao.site }} </td>
+          <td> {{ instituicao.email }} </td>
+          <td><button class="btn btn-danger" (click)="excluir(instituicao.id)">Excluir</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
