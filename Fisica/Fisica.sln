@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisica", "src\Fisica\Fisica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisica.Dados", "src\Fisica.Dados\Fisica.Dados.csproj", "{BF04AE85-3EBC-41BD-9786-40369936E37D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisica.Api", "src\Fisica.Api\Fisica.Api.csproj", "{10864C19-2F4A-4B52-8161-913889DAE444}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisica.Website", "src\Fisica.Website\Fisica.Website.csproj", "{8305BFFB-BAB2-4393-99DD-E1897070B3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{BF04AE85-3EBC-41BD-9786-40369936E37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF04AE85-3EBC-41BD-9786-40369936E37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF04AE85-3EBC-41BD-9786-40369936E37D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10864C19-2F4A-4B52-8161-913889DAE444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10864C19-2F4A-4B52-8161-913889DAE444}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10864C19-2F4A-4B52-8161-913889DAE444}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10864C19-2F4A-4B52-8161-913889DAE444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8305BFFB-BAB2-4393-99DD-E1897070B3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8305BFFB-BAB2-4393-99DD-E1897070B3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8305BFFB-BAB2-4393-99DD-E1897070B3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8305BFFB-BAB2-4393-99DD-E1897070B3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
