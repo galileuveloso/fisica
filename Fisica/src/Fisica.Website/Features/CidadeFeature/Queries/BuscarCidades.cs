@@ -31,7 +31,7 @@ namespace Fisica.Website.Features.CidadeFeature.Queries
             if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<BuscarCidadesQuery>());
 
-            IEnumerable<Cidade> response = await _repositoryCidade.GetAsync(cancellationToken);
+            IEnumerable<Cidade> response = await _repositoryCidade.GetAsync(x => x.UF == "PR" , cancellationToken);
 
             return ToResponse(response);
         }
