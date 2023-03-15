@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { ListarInstituicoesComponent } from './admin/listar-instituicoes/listar-instituicoes.component';
+import { ListarInstituicoesComponent } from './admin/instituicao/listar-instituicoes/listar-instituicoes.component';
 
 const routes: Routes = [
   {

@@ -14,5 +14,12 @@ namespace Fisica.Dados.Repositories
 
             return await repository.GetSingleAsync(x => x.Id == id, cancellationToken);
         }
+
+        public static async Task CriptografarSenha(this IRepository<Usuario> repository, Usuario usuario)
+        {
+            string sql = "SELECT md5(:Senha)";
+
+            usuario.Senha = await repository.Connection.QuerySingleAsync<string>(sql, new { usuario.Senha });
+        }
     }
 }

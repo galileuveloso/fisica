@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\admin\usuario\" />
     <Folder Include="ClientApp\src\app\shared\models\" />
     <Folder Include="Features\UsuarioFeature\Queries\" />
   </ItemGroup>

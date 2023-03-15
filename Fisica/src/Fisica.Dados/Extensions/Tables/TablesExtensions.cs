@@ -55,7 +55,7 @@ namespace Fisica.Dados.Extensions.Tables
             modelBuilder
                .Entity<Instituicao>()
                .Property(x => x.Descricao)
-               .HasMaxLength(200);
+               .HasMaxLength(600);
             modelBuilder
               .Entity<Instituicao>()
               .Property(x => x.Email)

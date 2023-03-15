@@ -4,7 +4,7 @@ using Fisica.Classes;
 
 namespace Fisica.Website.Extensions
 {
-    public static class InstituicaoExtension
+    public static class InstituicaoExtensions
     {
         public static void Atualizar(this Instituicao instituicao, AtualizarInstituicaoCommand request)
         {
@@ -49,12 +49,7 @@ namespace Fisica.Website.Extensions
                 {
                     Logradouro = domain.Endereco.Logradouro,
                     Bairro = domain.Endereco.Bairro,
-                    Cidade = new()
-                    {
-                        Id = domain.Endereco.Cidade.Id,
-                        Nome = domain.Endereco.Cidade.Nome,
-                        UF = domain.Endereco.Cidade.UF
-                    }, 
+                    Cidade = new(), 
                     Numero = domain.Endereco.Numero
                 }
             };

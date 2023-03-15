@@ -21,5 +21,11 @@ namespace Fisica.Website.Features.UsuarioFeature
         {
             return await this.SendAsync(_mediator, request);
         }
+
+        [HttpPost("inserir")]
+        public async Task<ActionResult> Inserir(InserirUsuarioCommand request)
+        {
+            return await this.SendAsync(_mediator, request);
+        }
     }
 }

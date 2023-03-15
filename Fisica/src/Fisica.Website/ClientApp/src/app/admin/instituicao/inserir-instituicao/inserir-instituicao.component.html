@@ -1,0 +1,71 @@
+<div style="background-color: gray; height: 98vh;"> <!-- so pro meu olho nao arder kkk-->
+  <h1>Inserir Instituição</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="instituicao.nome" #nome="ngModel">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" [(ngModel)]="instituicao.email" #email="ngModel">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="site">Site</label>
+          <input type="text" class="form-control" id="site" name="site" [(ngModel)]="instituicao.site" #site="ngModel">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="descricao">Descricao</label>
+          <textarea class="form-control" id="descricao" rows="4" cols="50" maxlength="600" name="descricao" [(ngModel)]="instituicao.descricao" #descricao="ngModel"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="logradouro">Logradouro</label>
+          <input type="text" class="form-control" id="logradouro" name="logradouro" [(ngModel)]="instituicao.endereco!.logradouro" #logradouro="ngModel">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="logradouro">Número</label>
+          <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="instituicao.endereco!.numero" #numero="ngModel">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cidades">Cidade</label>
+          <ng-select name="cidades" bindvalue="id" [items]="cidades" bindLabel="descricaoFormatada" [(ngModel)]="cidade" class="form-control"></ng-select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input type="text" class="form-control" id="bairro" name="bairro" [(ngModel)]="instituicao.endereco!.bairro" #bairro="ngModel">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="inserir()">
+            <i class="fa fa-save" aria-hidden="true"></i> Salvar
+          </button>
+          <a class="btn btn-secondary" [routerLink]="['/instituicoes']">
+            <i class="fa" aria-hidden="true"></i> Voltar
+          </a>
+        </div>
+      </div>
+    </div>
+</div>

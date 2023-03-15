@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Instituicao } from '../../shared/models/instituicao.model';
-import { InstituicaoService } from '../../shared/services/instituicao.service';
+import { Instituicao } from '../../../shared/models/instituicao.model';
+import { InstituicaoService } from '../../../shared/services/instituicao.service';
 
 @Component({
   selector: 'app-listar-instituicoes',

@@ -25,7 +25,7 @@ namespace Fisica.Website.Features.InstituicaoFeature.Commands
         public long? CidadeId { get; set; }
         public string? UF { get; set; }
 
-        public void Validate()
+        public void Validar()
         {
             if (UsuarioId is null || UsuarioId == 0) throw new ArgumentNullException(MessageHelper.NullFor<AtualizarInstituicaoCommand>(x => x.UsuarioId));
             if (InstituicaoId is null) throw new ArgumentNullException(MessageHelper.NullFor<AtualizarInstituicaoCommand>(x => x.InstituicaoId));
@@ -61,7 +61,7 @@ namespace Fisica.Website.Features.InstituicaoFeature.Commands
             if (request is null)
                 throw new ArgumentNullException(MessageHelper.NullFor<AtualizarInstituicaoCommand>());
 
-            request.Validate();
+            request.Validar();
 
             Usuario? usuario = await _repositoryUsuario.GetSingleAsync(x => x.Id == request.UsuarioId!.Value, cancellationToken);
 
