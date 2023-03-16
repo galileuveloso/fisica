@@ -44,7 +44,7 @@ namespace Fisica.Website.Features.InstituicaoFeature.Commands
                 throw new ObjectNotFoundException("Usuário não encontado.");
 
             if (usuario!.TipoUsuario != (int)TipoUsuario.Adminstrador)
-                throw new InvalidOperationException("Usuário não possui permissão para inserir instituições.");
+                throw new InvalidOperationException("Usuário não possui permissão para excluir instituições.");
 
             Instituicao? instituicao = await _repositoryInstituicao.GetSingleAsync(x => x.Id == request.InstituicaoId, cancellationToken);
 

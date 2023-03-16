@@ -6,7 +6,7 @@ using Fisica.Interfaces;
 using MediatR;
 using System.Data.Entity.Core;
 
-namespace Fisica.Website.Features.UsuarioFeature.Commands
+namespace Fisica.Website.Features.UsuarioFeature.Commands.Login
 {
     public class LoginCommand : IRequest<UsuarioResponse>
     {
@@ -48,7 +48,7 @@ namespace Fisica.Website.Features.UsuarioFeature.Commands
             if (usuario is null)
                 throw new ObjectNotFoundException("Usuário não encontrado.");
 
-            return usuario.ToResponse();
+            return usuario.ToResponseLogin();
         }
     }
 }
