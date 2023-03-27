@@ -4,6 +4,7 @@ using Fisica.Enums;
 using Fisica.Interfaces;
 using Fisica.Models;
 using Fisica.Website.Extensions;
+using Fisica.Website.Features.UsuarioFeature.Queries;
 using Fisica.Website.Helpers;
 using MediatR;
 using System.Data;

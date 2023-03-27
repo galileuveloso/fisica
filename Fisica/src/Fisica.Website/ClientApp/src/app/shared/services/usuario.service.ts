@@ -16,4 +16,12 @@ export class UsuarioService extends AbstractHttpService {
   public inserir(usuario: Usuario): Observable<Usuario> {
     return this.post<Usuario>('inserir', usuario);
   }
+
+  public getUsuarios(): Observable<Usuario[]> {
+    return this.get<Usuario[]>('buscar-usuarios');
+  }
+
+  public excluir(id: number): Observable<any> {
+    return this.delete<any>(`excluir/${id}`);
+  } 
 }
