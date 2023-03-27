@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { UsuarioLoginModel } from '../models/usuario-login.model';
 import { Usuario } from '../models/usuario.model';
 import { AbstractHttpService } from './abstract-http.service';
 
@@ -23,5 +24,37 @@ export class UsuarioService extends AbstractHttpService {
 
   public excluir(id: number): Observable<any> {
     return this.delete<any>(`excluir/${id}`);
-  } 
+  }
+
+
+  //Autenticacao
+  TOKEN: string = 'TOKEN';
+
+  public login(login: string, senha: string): Observable<UsuarioLoginModel> {
+    return this.post<UsuarioLoginModel>('login', { Login: login, Senha: senha });
+  }
+
+  async autenticar(token: string): Promise<void> {
+    this.limparDados();
+    localStorage.setItem(this.TOKEN, token.replaceAll("\"", ""));
+  }
+
+  public logout(): Observable<any> | null {
+    this.limparDados();
+    return null;
+  }
+
+  public isAutenticado(): boolean {
+    const token = localStorage.getItem(this.TOKEN);
+    return (token != null && token != undefined && token != '');
+  }
+
+  public validarUsuario() {
+    if (!this.isAutenticado())
+      window.location.replace('http://localhost:49828/#/website/');
+  }
+
+  public limparDados() {
+    localStorage.removeItem(this.TOKEN);
+  }
 }

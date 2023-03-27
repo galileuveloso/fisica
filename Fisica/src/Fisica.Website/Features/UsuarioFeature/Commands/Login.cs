@@ -1,10 +1,14 @@
-﻿using Fisica.Website.Extensions;
-using Fisica.Website.Helpers;
-using Fisica.Classes;
+﻿using Fisica.Classes;
 using Fisica.Dados.Repositories;
 using Fisica.Interfaces;
+using Fisica.Website.Extensions;
+using Fisica.Website.Helpers;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 using System.Data.Entity.Core;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Fisica.Website.Features.UsuarioFeature.Commands.Login
 {
@@ -25,14 +29,17 @@ namespace Fisica.Website.Features.UsuarioFeature.Commands.Login
         public long UsuarioId { get; set; }
         public string Nome { get; set; }
         public int TipoUsuario { get; set; }
+        public string Token { get; set; }
     }
 
     public class LoginCommandHandler : IRequestHandler<LoginCommand, UsuarioResponse>
     {
+        private readonly IConfiguration _configuration;
         private readonly IRepository<Usuario> _repository;
 
-        public LoginCommandHandler(IRepository<Usuario> repository)
+        public LoginCommandHandler(IConfiguration configuration, IRepository<Usuario> repository)
         {
+            _configuration = configuration;
             _repository = repository;
         }
 
@@ -43,12 +50,33 @@ namespace Fisica.Website.Features.UsuarioFeature.Commands.Login
 
             request.Validate();
 
-            Usuario? usuario = await _repository.ObterUsuarioPorLogin(request.Login!, request.Senha!, cancellationToken);
+            string hash = await _repository.ObterHash(request.Senha!, cancellationToken);
+
+            Usuario? usuario = await _repository.GetSingleAsync(x => x.Login == request.Login! && x.Senha == hash, cancellationToken);
 
             if (usuario is null)
                 throw new ObjectNotFoundException("Usuário não encontrado.");
 
-            return usuario.ToResponseLogin();
+            IList<Claim> claims = new List<Claim>
+            {
+                new("idUsuario", usuario.Id.ToString())
+            };
+
+            string chaveJwt = _configuration.GetValue<string>("jwt:key")!;
+
+            JwtSecurityToken token = new(
+                issuer: _configuration.GetValue<string>("jwt:issuer"),
+                audience: _configuration.GetValue<string>("jwt:audience"),
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(_configuration.GetValue<int>("jwt:timeout")),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(chaveJwt)), SecurityAlgorithms.HmacSha256)
+            );
+
+            UsuarioResponse response = usuario.ToResponseLogin();
+
+            response.Token = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return response;
         }
     }
 }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app.routing';
+import { UsuarioComumModule } from './usuario-comum/usuario-comum.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AppRoutingModule } from './app.routing';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     AdminModule,
+    UsuarioComumModule,
     RouterModule,
     AppRoutingModule
   ],
