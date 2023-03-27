@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { AutocadastroModel } from '../models/autocadastro.model';
 import { UsuarioLoginModel } from '../models/usuario-login.model';
 import { Usuario } from '../models/usuario.model';
 import { AbstractHttpService } from './abstract-http.service';
@@ -26,6 +27,9 @@ export class UsuarioService extends AbstractHttpService {
     return this.delete<any>(`excluir/${id}`);
   }
 
+  public autoCadastro(usuario: AutocadastroModel) {
+    return this.post<Usuario>('autocadastro', usuario);
+  }
 
   //Autenticacao
   TOKEN: string = 'TOKEN';

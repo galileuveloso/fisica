@@ -1,4 +1,5 @@
 ﻿using Fisica.Classes;
+using Fisica.Enums;
 using Fisica.Website.Features.UsuarioFeature.Commands;
 using Fisica.Website.Features.UsuarioFeature.Queries;
 
@@ -21,6 +22,23 @@ namespace Fisica.Website.Extensions
                     Descricao = ""
                 },
                 InstituicaoId = request.Instituicao?.Id
+            };
+        }
+
+        public static Usuario ToDomain(this AutoCadastroCommand request)
+        {
+            return new()
+            {
+                Nome = request.Nome!,
+                Cpf = request.Cpf!,
+                Email = request.Email!,
+                Login = request.Login!,
+                Senha = request.Senha!,
+                TipoUsuario = (int)TipoUsuario.Comum,
+                Perfil = new()
+                {
+                    Descricao = request.SobreMim!
+                }
             };
         }
 

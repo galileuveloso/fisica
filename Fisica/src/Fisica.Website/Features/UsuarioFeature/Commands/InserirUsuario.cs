@@ -24,7 +24,7 @@ namespace Fisica.Website.Features.UsuarioFeature.Commands
 
         public void Validar()
         {
-
+            //TO-DO: Validar
         }
     }
 

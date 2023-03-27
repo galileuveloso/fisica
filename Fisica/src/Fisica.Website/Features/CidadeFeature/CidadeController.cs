@@ -2,12 +2,15 @@
 using Fisica.Website.Features.CidadeFeature.Queries;
 using Fisica.Website.Features.UsuarioFeature.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fisica.Website.Features.CidadeFeature
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CidadeController : ControllerBase
     {
         private readonly IMediator _mediator;
