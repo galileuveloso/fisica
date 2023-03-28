@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <div *ngFor="let noticia of noticias">
+      <span>{{ noticia.autorNome }}</span>
+      <p>
+        {{ noticia.conteudo }}
+      </p>
+      <span>{{ noticia.dataCadastro }}</span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-primary" (click)="publicarNoticia()" >Adicionar Noticia</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <textarea type="text" class="form-control" [(ngModel)]="noticia"></textarea>
+  </div>
+</div>

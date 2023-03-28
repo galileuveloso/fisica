@@ -1,4 +1,6 @@
-﻿using Fisica.Enums;
+﻿using Fisica.Domains;
+using Fisica.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fisica.Classes
 {
@@ -23,6 +25,12 @@ namespace Fisica.Classes
         public IEnumerable<Favorito>? Favoritos { get; set; }
 
         public IEnumerable<Widget>? Widgets { get; set; }
+
+        public IEnumerable<Noticia>? Noticias { get; set; }
+
+        public IEnumerable<Usuario>? Seguidores { get; set; }
+
+        public IEnumerable<Usuario>? Seguindo { get; set; }
 
         private void SetPerfil(Perfil value)
         {

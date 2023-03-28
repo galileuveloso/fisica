@@ -32,6 +32,8 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\admin\usuario\" />
     <Folder Include="ClientApp\src\app\shared\models\" />
+    <Folder Include="ClientApp\src\app\shared\components\" />
+    <Folder Include="ClientApp\src\app\usuario-comum\dashboard\" />
     <Folder Include="ClientApp\src\app\usuario-comum\usuario\" />
     <Folder Include="Features\UsuarioFeature\Queries\" />
   </ItemGroup>

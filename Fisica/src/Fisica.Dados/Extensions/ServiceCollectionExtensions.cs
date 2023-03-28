@@ -18,6 +18,8 @@ namespace Fisica.Dados.Extensions
             services.AddScoped(typeof(IRepository<Perfil>), typeof(Repository<Perfil>));
             services.AddScoped(typeof(IRepository<Usuario>), typeof(Repository<Usuario>));
             services.AddScoped(typeof(IRepository<Widget>), typeof(Repository<Widget>));
+            services.AddScoped(typeof(IRepository<Noticia>), typeof(Repository<Noticia>));
+            services.AddScoped(typeof(IRepository<Segue>), typeof(Repository<Segue>));
         }
 
         public static void SetupDbContext(this IServiceCollection services, string? connectionString)

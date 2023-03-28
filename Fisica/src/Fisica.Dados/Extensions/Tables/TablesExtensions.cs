@@ -75,6 +75,17 @@ namespace Fisica.Dados.Extensions.Tables
               .WithOne(x => x.Instituicao);
 
 
+            //NOTICIA
+            modelBuilder
+                .Entity<Noticia>()
+                .Property(x => x.Conteudo)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<Noticia>()
+                .HasOne(x => x.Autor)
+                .WithMany(x => x.Noticias)
+                .HasForeignKey(x => x.AutorId);
+
             //PERFIL
             modelBuilder
               .Entity<Perfil>()
@@ -89,54 +100,66 @@ namespace Fisica.Dados.Extensions.Tables
               .HasOne(x => x.Usuario)
               .WithOne(x => x.Perfil);
 
-
             //USUARIO
             modelBuilder
-              .Entity<Usuario>()
-              .Property(x => x.Nome)
-              .HasMaxLength(200);
+                .Entity<Usuario>()
+                .Property(x => x.Nome)
+                .HasMaxLength(200);
             modelBuilder
-              .Entity<Usuario>()
-              .Property(x => x.Email)
-              .HasMaxLength(200);
+                .Entity<Usuario>()
+                .Property(x => x.Email)
+                .HasMaxLength(200);
             modelBuilder
-              .Entity<Usuario>()
-              .Property(x => x.Cpf)
-              .HasMaxLength(200);
+                .Entity<Usuario>()
+                .Property(x => x.Cpf)
+                .HasMaxLength(200);
             modelBuilder
-              .Entity<Usuario>()
-              .Property(x => x.Login)
-              .HasMaxLength(200);
+                .Entity<Usuario>()
+                .Property(x => x.Login)
+                .HasMaxLength(200);
             modelBuilder
-              .Entity<Usuario>()
-              .Property(x => x.Senha)
-              .HasMaxLength(200);
+                .Entity<Usuario>()
+                .Property(x => x.Senha)
+                .HasMaxLength(200);
             modelBuilder
-             .Entity<Usuario>()
-             .HasOne(x => x.Perfil)
-             .WithOne(x => x.Usuario)
-             .HasForeignKey<Usuario>(x => x.PerfilId);
+                .Entity<Usuario>()
+                .HasOne(x => x.Perfil)
+                .WithOne(x => x.Usuario)
+                .HasForeignKey<Usuario>(x => x.PerfilId);
             modelBuilder
-             .Entity<Usuario>()
-             .HasOne(x => x.Instituicao)
-             .WithMany(x => x.Usuarios)
-             .HasForeignKey(x => x.InstituicaoId);
+                .Entity<Usuario>()
+                .HasOne(x => x.Instituicao)
+                .WithMany(x => x.Usuarios)
+                .HasForeignKey(x => x.InstituicaoId);
             modelBuilder
-             .Entity<Usuario>()
-             .HasMany(x => x.Favoritos)
-             .WithOne(x => x.Usuario);
+                .Entity<Usuario>()
+                .HasMany(x => x.Favoritos)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Noticias)
+                .WithOne(x => x.Autor);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Seguindo)
+                .WithMany(x => x.Seguidores)
+                .UsingEntity<Segue>(
+                    segue => segue.HasOne(x => x.Usuario).WithMany(),
+                    segue => segue.HasOne(x => x.Professor).WithMany()
+                   );
+
 
 
             //WIDGET
             modelBuilder
-             .Entity<Widget>()
-             .HasOne(x => x.Usuario)
-             .WithMany(x => x.Widgets)
-             .HasForeignKey(x => x.UsuarioId);
+                .Entity<Widget>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Widgets)
+                .HasForeignKey(x => x.UsuarioId);
             modelBuilder
-              .Entity<Widget>()
-              .Property(x => x.Descricao)
-              .HasMaxLength(200);
+                .Entity<Widget>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(200);
             //TO - DO: Colcoar a Prop da Aula.
         }
     }

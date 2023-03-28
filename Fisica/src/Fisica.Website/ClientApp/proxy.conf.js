@@ -9,6 +9,7 @@ const PROXY_CONFIG = [
       "/api/usuario",
       "/api/instituicao",
       "/api/cidade",
+      "/api/noticia",
    ],
     target: target,
     secure: false,
