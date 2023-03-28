@@ -16,6 +16,10 @@ namespace Fisica.Dados
         public DbSet<Widget> Widgets { get; set; }
         public DbSet<Noticia> Noticia { get; set; }
         public DbSet<Segue> Segue { get; set; }
+        public DbSet<Forum> Forum { get; set; }
+        public DbSet<TopicoForum> TopicoForum { get; set; }
+        public DbSet<RespostaTopico> RespostaTopico { get; set; }
+        public DbSet<Replica> Replica { get; set; }
 
         public DbConnection Connection => base.Database.GetDbConnection();
     }

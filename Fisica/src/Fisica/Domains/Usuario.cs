@@ -1,8 +1,6 @@
-﻿using Fisica.Domains;
-using Fisica.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Fisica.Enums;
 
-namespace Fisica.Classes
+namespace Fisica.Domains
 {
     public class Usuario : Entity
     {
@@ -31,6 +29,12 @@ namespace Fisica.Classes
         public IEnumerable<Usuario>? Seguidores { get; set; }
 
         public IEnumerable<Usuario>? Seguindo { get; set; }
+
+        public IEnumerable<TopicoForum>? TopicosForum { get; set; }
+
+        public IEnumerable<RespostaTopico>? RespostasTopicos { get; set; }
+
+        public IEnumerable<Replica>? Replicas { get; set; }
 
         private void SetPerfil(Perfil value)
         {

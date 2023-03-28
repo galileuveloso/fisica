@@ -20,6 +20,10 @@ namespace Fisica.Dados.Extensions
             services.AddScoped(typeof(IRepository<Widget>), typeof(Repository<Widget>));
             services.AddScoped(typeof(IRepository<Noticia>), typeof(Repository<Noticia>));
             services.AddScoped(typeof(IRepository<Segue>), typeof(Repository<Segue>));
+            services.AddScoped(typeof(IRepository<Forum>), typeof(Repository<Forum>));
+            services.AddScoped(typeof(IRepository<TopicoForum>), typeof(Repository<TopicoForum>));
+            services.AddScoped(typeof(IRepository<RespostaTopico>), typeof(Repository<RespostaTopico>));
+            services.AddScoped(typeof(IRepository<Replica>), typeof(Repository<Replica>));
         }
 
         public static void SetupDbContext(this IServiceCollection services, string? connectionString)

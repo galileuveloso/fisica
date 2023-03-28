@@ -148,8 +148,6 @@ namespace Fisica.Dados.Extensions.Tables
                     segue => segue.HasOne(x => x.Professor).WithMany()
                    );
 
-
-
             //WIDGET
             modelBuilder
                 .Entity<Widget>()
@@ -161,6 +159,72 @@ namespace Fisica.Dados.Extensions.Tables
                 .Property(x => x.Descricao)
                 .HasMaxLength(200);
             //TO - DO: Colcoar a Prop da Aula.
+
+            //FORUM
+            modelBuilder
+                .Entity<Forum>()
+                .Property(x => x.Titulo)
+                 .HasMaxLength(200);
+            modelBuilder
+                .Entity<Forum>()
+                .HasMany(x => x.Topicos)
+                .WithOne(x => x.Forum);
+
+            //TOPICO FORUM
+            modelBuilder
+                .Entity<TopicoForum>()
+                .Property(x => x.Titulo)
+                .HasMaxLength(200);
+            modelBuilder
+                .Entity<TopicoForum>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<TopicoForum>()
+                .HasOne(x => x.Forum)
+                .WithMany(x => x.Topicos)
+                .HasForeignKey(x => x.ForumId);
+            modelBuilder
+                .Entity<TopicoForum>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.TopicosForum)
+                .HasForeignKey(x => x.UsuarioId);
+            modelBuilder
+                .Entity<TopicoForum>()
+                .HasMany(x => x.Respostas)
+                .WithOne(x => x.TopicoForum);
+
+            //RESPOSTA TOPICO
+            modelBuilder
+                .Entity<RespostaTopico>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<RespostaTopico>()
+                .HasOne(x => x.TopicoForum)
+                .WithMany(x => x.Respostas)
+                .HasForeignKey(x => x.TopicoForumId);
+            modelBuilder
+                .Entity<RespostaTopico>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.RespostasTopicos)
+                .HasForeignKey(x => x.UsuarioId);
+
+            //REPLICA
+            modelBuilder
+                .Entity<Replica>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<Replica>()
+                .HasOne(x => x.RespostaTopico)
+                .WithMany(x => x.Replicas)
+                .HasForeignKey(x => x.RespostaTopicoId);
+            modelBuilder
+                .Entity<Replica>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Replicas)
+                .HasForeignKey(x => x.UsuarioId);
         }
     }
 }

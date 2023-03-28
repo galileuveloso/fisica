@@ -1,6 +1,4 @@
-﻿using Fisica.Domains;
-
-namespace Fisica.Classes
+﻿namespace Fisica.Domains
 {
     public class Instituicao : Entity
     {

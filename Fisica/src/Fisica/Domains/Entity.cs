@@ -1,4 +1,4 @@
-﻿namespace Fisica.Classes
+﻿namespace Fisica.Domains
 {
     public abstract class Entity
     {

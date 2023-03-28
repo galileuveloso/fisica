@@ -1,4 +1,4 @@
-﻿using Fisica.Classes;
+﻿using Fisica.Domains;
 using System.Data.Common;
 using System.Linq.Expressions;
 

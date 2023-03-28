@@ -1,4 +1,4 @@
-﻿using Fisica.Classes;
+﻿using Fisica.Domains;
 
 namespace Fisica.Domains
 {
