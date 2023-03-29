@@ -4,7 +4,7 @@
     {
         public string Maquina { get; set; }
 
-        public long UsuarioId { get; set; }
+        public long? UsuarioId { get; set; }
         private Usuario _Usuario;
         public virtual Usuario Usuario { get { return _Usuario; } set { _Usuario = value; SetUsuario(value); } }
 

@@ -41,7 +41,9 @@ namespace Fisica.Website.Features.AulaFeature
         [HttpGet("selecionar-aula/{aulaId}")]
         public async Task<ActionResult> GetAula(long? aulaId)
         {
-            return await this.SendAsync(_mediator, new SelecionarAulaByIdQuery() { AulaId = aulaId });
+            string? maquina = HttpContext.Connection.RemoteIpAddress.ToString();//ver dps se isso funciona msm
+
+            return await this.SendAsync(_mediator, new SelecionarAulaByIdQuery() { AulaId = aulaId, Maquina = maquina });
         }
     }
 }
