@@ -1,4 +1,4 @@
-﻿using Fisica.Classes;
+﻿using Fisica.Domains;
 using Fisica.Enums;
 using Fisica.Website.Features.UsuarioFeature.Commands;
 using Fisica.Website.Features.UsuarioFeature.Queries;

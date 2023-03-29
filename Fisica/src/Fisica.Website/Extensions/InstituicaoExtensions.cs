@@ -1,6 +1,6 @@
-﻿using Fisica.Website.Features.InstituicaoFeature.Commands;
+﻿using Fisica.Domains;
+using Fisica.Website.Features.InstituicaoFeature.Commands;
 using Fisica.Website.Features.InstituicaoFeature.Queries;
-using Fisica.Classes;
 
 namespace Fisica.Website.Extensions
 {

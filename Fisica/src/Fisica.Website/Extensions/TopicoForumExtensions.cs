@@ -29,6 +29,24 @@ namespace Fisica.Website.Extensions
             };
         }
 
+        public static TopicoForumModel ToResponseWithRespostas(this TopicoForum topico)
+        {
+            TopicoForumModel response = new()
+            {
+                DataCadastro = topico.DataCadastro,
+                Descricao = topico.Descricao,
+                Id = topico.Id,
+                Titulo = topico.Titulo,
+                UsuarioCadastro = topico.Usuario.Nome,
+                Respostas = new List<RespostaTopicoModel>()
+            };
+
+            foreach (RespostaTopico resposta in topico.Respostas)
+                response.Respostas.Add(resposta.ToResponseWithReplicas());
+
+            return response;
+        }
+
         public static IEnumerable<TopicoForumModel> ToResponse(this IEnumerable<TopicoForum> topicos)
         {
             IList<TopicoForumModel> list = new List<TopicoForumModel>();

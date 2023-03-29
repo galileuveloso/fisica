@@ -7,5 +7,7 @@
         public string Descricao { get; set; }
         public string UsuarioCadastro { get; set; }
         public DateTime DataCadastro { get; set; }
+
+        public IList<RespostaTopicoModel>? Respostas { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Fisica.Classes;
+using Fisica.Domains;
 using Fisica.Interfaces;
 
 namespace Fisica.Dados.Repositories

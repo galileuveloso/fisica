@@ -36,6 +36,12 @@ namespace Fisica.Domains
 
         public IEnumerable<Replica>? Replicas { get; set; }
 
+        public IEnumerable<ComentarioAula>? Comentarios { get; set; }
+
+        public IEnumerable<VisualizacaoAula>? Visualizacoes { get; set; }
+
+        public IEnumerable<Aula>? Aulas { get; set; }
+
         private void SetPerfil(Perfil value)
         {
             PerfilId = value is null ? 0 : value.Id;

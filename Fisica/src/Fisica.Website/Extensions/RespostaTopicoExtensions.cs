@@ -26,5 +26,22 @@ namespace Fisica.Website.Extensions
                 NomeUsuario = domain.Usuario.Nome
             };
         }
+
+        public static RespostaTopicoModel ToResponseWithReplicas(this RespostaTopico domain)
+        {
+            RespostaTopicoModel response = new()
+            {
+                Descricao = domain.Descricao!,
+                Id = domain.Id,
+                TopicoForumId = domain.TopicoForumId,
+                NomeUsuario = domain.Usuario.Nome,
+                Replicas = new List<ReplicaModel>()
+            };
+
+            foreach (Replica replica in domain.Replicas)
+                response.Replicas.Add(replica.ToResponse());
+
+            return response;
+        }
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace Fisica.Models
 {
-    public class RespostaTopicoModel
+    public class ReplicaModel
     {
         public long Id { get; set; }
-        public long TopicoForumId { get; set; }
         public string Descricao { get; set; }
+        public DateTime DataCadastro { get; set; }
         public string NomeUsuario { get; set; }
-
-        public IList<ReplicaModel>? Replicas { get; set; }
+        public long RespostaTopicoId { get; set; }
     }
 }

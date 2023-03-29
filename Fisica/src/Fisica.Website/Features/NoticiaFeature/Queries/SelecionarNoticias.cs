@@ -1,5 +1,4 @@
-﻿using Fisica.Classes;
-using Fisica.Domains;
+﻿using Fisica.Domains;
 using Fisica.Interfaces;
 using Fisica.Models;
 using Fisica.Website.Extensions;

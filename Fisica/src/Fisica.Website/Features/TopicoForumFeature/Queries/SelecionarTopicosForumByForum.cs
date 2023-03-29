@@ -23,9 +23,10 @@ namespace Fisica.Website.Features.TopicoForumFeature.Queries
         private readonly IRepository<TopicoForum> _repositoryTopicoForum;
         private readonly IRepository<Forum> _repositoryForum;
 
-        public SelecionarTopicosForumByForumHandler(IRepository<TopicoForum> repositoryTopicoForum)
+        public SelecionarTopicosForumByForumHandler(IRepository<TopicoForum> repositoryTopicoForum, IRepository<Forum> repositoryForum)
         {
             _repositoryTopicoForum = repositoryTopicoForum;
+            _repositoryForum = repositoryForum;
         }
 
         public async Task<IEnumerable<TopicoForumModel>> Handle(SelecionarTopicosForumByForumQuery request, CancellationToken cancellationToken)

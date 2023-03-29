@@ -1,5 +1,4 @@
-﻿using Fisica.Classes;
-using Fisica.Dados.Repositories;
+﻿using Fisica.Dados.Repositories;
 using Fisica.Domains;
 using Fisica.Interfaces;
 using Microsoft.EntityFrameworkCore;

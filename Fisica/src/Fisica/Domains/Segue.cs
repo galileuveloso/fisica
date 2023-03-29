@@ -1,6 +1,4 @@
-﻿using Fisica.Classes;
-
-namespace Fisica.Domains
+﻿namespace Fisica.Domains
 {
     public class Segue : Entity
     {

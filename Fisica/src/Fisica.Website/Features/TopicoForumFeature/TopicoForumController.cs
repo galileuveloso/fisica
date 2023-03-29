@@ -38,6 +38,11 @@ namespace Fisica.Website.Features.TopicoForumFeature
             return await this.SendAsync(_mediator, new SelecionarTopicosForumByForumQuery() { ForumId = forumId });
         }
 
-        //fazer um method que retorna tudo (o topico e suas respostas)
+        [HttpGet("selecionar-topico/{topicoForumId}")]
+        public async Task<ActionResult> GetTopicoForum(long topicoForumId)
+        {
+            return await this.SendAsync(_mediator, new SelecionarTopicoForumByIdQuery() { TopicoForumId = topicoForumId });
+        }
+
     }
 }

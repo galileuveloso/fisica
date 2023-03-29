@@ -1,10 +1,9 @@
-﻿using Fisica.Website.Extensions;
-using Fisica.Website.Features.InstituicaoFeature.Queries;
-using Fisica.Website.Helpers;
-using Fisica.Classes;
-using Fisica.Domains;
+﻿using Fisica.Domains;
 using Fisica.Enums;
 using Fisica.Interfaces;
+using Fisica.Website.Extensions;
+using Fisica.Website.Features.InstituicaoFeature.Queries;
+using Fisica.Website.Helpers;
 using MediatR;
 using System.Data;
 using System.Data.Entity.Core;

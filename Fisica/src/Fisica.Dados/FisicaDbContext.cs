@@ -1,5 +1,4 @@
-﻿using Fisica.Classes;
-using Fisica.Domains;
+﻿using Fisica.Domains;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
@@ -20,6 +19,13 @@ namespace Fisica.Dados
         public DbSet<TopicoForum> TopicoForum { get; set; }
         public DbSet<RespostaTopico> RespostaTopico { get; set; }
         public DbSet<Replica> Replica { get; set; }
+        public DbSet<Aula> Aula { get; set; }
+        public DbSet<AreaFisica> AreaFisica { get; set; }
+        public DbSet<SessaoAula> SessaoAula { get; set; }
+        public DbSet<WidgetAula> WidgetAula { get; set; }
+        public DbSet<Widget> Widget { get; set; }
+        public DbSet<ComentarioAula> ComentarioAula { get; set; }
+        public DbSet<VisualizacaoAula> VisualizacaoAula { get; set; }
 
         public DbConnection Connection => base.Database.GetDbConnection();
     }

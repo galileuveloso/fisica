@@ -1,5 +1,4 @@
-﻿using Fisica.Classes;
-using Fisica.Domains;
+﻿using Fisica.Domains;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fisica.Dados.Extensions.Tables
@@ -8,7 +7,8 @@ namespace Fisica.Dados.Extensions.Tables
     {
         public static void SetupTabelas(this ModelBuilder modelBuilder)
         {
-            //CIDADE
+            #region Cidade
+
             modelBuilder
                .Entity<Cidade>()
                .Property(x => x.Nome)
@@ -21,9 +21,9 @@ namespace Fisica.Dados.Extensions.Tables
               .Entity<Cidade>()
               .HasMany(x => x.Enderecos)
               .WithOne(x => x.Cidade);
+            #endregion
 
-
-            //ENDERECO
+            #region Endereco
             modelBuilder
                .Entity<Endereco>()
                .Property(x => x.Bairro)
@@ -37,16 +37,28 @@ namespace Fisica.Dados.Extensions.Tables
                .HasOne(x => x.Cidade)
                .WithMany(x => x.Enderecos)
                .HasForeignKey(x => x.CidadeId);
+            #endregion
 
-
-            //FAVORITO              TO - DO: Colcoar as navegabiliddes pra Aula e Sessao Aula quando trouxer todas as Entities
+            #region Favorito
+            //TO - DO: Colcoar as navegabiliddes pra Aula e Sessao Aula quando trouxer todas as Entities
             modelBuilder
                .Entity<Favorito>()
                .HasOne(x => x.Usuario)
                .WithMany(x => x.Favoritos)
                .HasForeignKey(x => x.UsuarioId);
+            modelBuilder
+              .Entity<Favorito>()
+              .HasOne(x => x.Aula)
+              .WithMany(x => x.Favoritos)
+              .HasForeignKey(x => x.AulaId);
+            modelBuilder
+             .Entity<Favorito>()
+             .HasOne(x => x.SessaoAula)
+             .WithMany(x => x.Favoritos)
+             .HasForeignKey(x => x.SessaoAulaId);
+            #endregion
 
-
+            #region Instituicao
             //INSTITUICAO
             modelBuilder
                .Entity<Instituicao>()
@@ -73,9 +85,9 @@ namespace Fisica.Dados.Extensions.Tables
               .Entity<Instituicao>()
               .HasMany(x => x.Usuarios)
               .WithOne(x => x.Instituicao);
+            #endregion
 
-
-            //NOTICIA
+            #region Noticia
             modelBuilder
                 .Entity<Noticia>()
                 .Property(x => x.Conteudo)
@@ -85,8 +97,10 @@ namespace Fisica.Dados.Extensions.Tables
                 .HasOne(x => x.Autor)
                 .WithMany(x => x.Noticias)
                 .HasForeignKey(x => x.AutorId);
+            #endregion
 
-            //PERFIL
+            #region Perfil
+
             modelBuilder
               .Entity<Perfil>()
               .Property(x => x.Descricao)
@@ -99,8 +113,9 @@ namespace Fisica.Dados.Extensions.Tables
               .Entity<Perfil>()
               .HasOne(x => x.Usuario)
               .WithOne(x => x.Perfil);
+            #endregion
 
-            //USUARIO
+            #region Usuario
             modelBuilder
                 .Entity<Usuario>()
                 .Property(x => x.Nome)
@@ -147,8 +162,41 @@ namespace Fisica.Dados.Extensions.Tables
                     segue => segue.HasOne(x => x.Usuario).WithMany(),
                     segue => segue.HasOne(x => x.Professor).WithMany()
                    );
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.TopicosForum)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.RespostasTopicos)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.TopicosForum)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Replicas)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Widgets)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Comentarios)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Visualizacoes)
+                .WithOne(x => x.Usuario);
+            modelBuilder
+                .Entity<Usuario>()
+                .HasMany(x => x.Aulas)
+                .WithOne(x => x.Professor);
+            #endregion
 
-            //WIDGET
+            #region Widget
             modelBuilder
                 .Entity<Widget>()
                 .HasOne(x => x.Usuario)
@@ -158,9 +206,13 @@ namespace Fisica.Dados.Extensions.Tables
                 .Entity<Widget>()
                 .Property(x => x.Descricao)
                 .HasMaxLength(200);
-            //TO - DO: Colcoar a Prop da Aula.
+            modelBuilder
+                .Entity<Widget>()
+                .HasMany(x => x.Aulas)
+                .WithOne(x => x.Widget);
+            #endregion
 
-            //FORUM
+            #region Forum
             modelBuilder
                 .Entity<Forum>()
                 .Property(x => x.Titulo)
@@ -169,8 +221,9 @@ namespace Fisica.Dados.Extensions.Tables
                 .Entity<Forum>()
                 .HasMany(x => x.Topicos)
                 .WithOne(x => x.Forum);
+            #endregion
 
-            //TOPICO FORUM
+            #region Topico Forum
             modelBuilder
                 .Entity<TopicoForum>()
                 .Property(x => x.Titulo)
@@ -193,8 +246,9 @@ namespace Fisica.Dados.Extensions.Tables
                 .Entity<TopicoForum>()
                 .HasMany(x => x.Respostas)
                 .WithOne(x => x.TopicoForum);
+            #endregion
 
-            //RESPOSTA TOPICO
+            #region Resposta Topico
             modelBuilder
                 .Entity<RespostaTopico>()
                 .Property(x => x.Descricao)
@@ -209,8 +263,9 @@ namespace Fisica.Dados.Extensions.Tables
                 .HasOne(x => x.Usuario)
                 .WithMany(x => x.RespostasTopicos)
                 .HasForeignKey(x => x.UsuarioId);
+            #endregion
 
-            //REPLICA
+            #region Replica
             modelBuilder
                 .Entity<Replica>()
                 .Property(x => x.Descricao)
@@ -225,6 +280,126 @@ namespace Fisica.Dados.Extensions.Tables
                 .HasOne(x => x.Usuario)
                 .WithMany(x => x.Replicas)
                 .HasForeignKey(x => x.UsuarioId);
+            #endregion
+
+            #region Widget
+            modelBuilder
+                .Entity<Widget>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(200);
+            modelBuilder
+                .Entity<Widget>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Widgets)
+                .HasForeignKey(x => x.UsuarioId);
+            modelBuilder
+                .Entity<Widget>()
+                .HasMany(x => x.Aulas)
+                .WithOne(x => x.Widget);
+            #endregion
+
+            #region Widget Aula
+            modelBuilder
+                .Entity<WidgetAula>()
+                .HasOne(x => x.Widget)
+                .WithMany(x => x.Aulas)
+                .HasForeignKey(x => x.WidgetId);
+            modelBuilder
+                .Entity<WidgetAula>()
+                .HasOne(x => x.Aula)
+                .WithMany(x => x.WidgetsAulas)
+                .HasForeignKey(x => x.AulaId);
+            #endregion
+
+            #region Aula
+            modelBuilder
+                .Entity<Aula>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(200);
+            modelBuilder
+                .Entity<Aula>()
+                .HasOne(x => x.AreaFisica)
+                .WithMany(x => x.Aulas)
+                .HasForeignKey(x => x.AreaFisicaId);
+            modelBuilder
+                .Entity<Aula>()
+                .HasMany(x => x.WidgetsAulas)
+                .WithOne(x => x.Aula);
+            modelBuilder
+                .Entity<Aula>()
+                .HasOne(x => x.Professor)
+                .WithMany(x => x.Aulas)
+                .HasForeignKey(x => x.ProfessorId);
+            modelBuilder
+                .Entity<Aula>()
+                .HasMany(x => x.Comentarios)
+                .WithOne(x => x.Aula);
+            modelBuilder
+                .Entity<Aula>()
+                .HasMany(x => x.Visualizacoes)
+                .WithOne(x => x.Aula);
+            modelBuilder
+                .Entity<Aula>()
+                .HasMany(x => x.Sessoes)
+                .WithOne(x => x.Aula);
+            #endregion
+
+            #region Sessao Aula
+            modelBuilder
+                .Entity<SessaoAula>()
+                .Property(x => x.Conteudo)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<SessaoAula>()
+                .HasOne(x => x.Aula)
+                .WithMany(x => x.Sessoes);
+            //TO-DO: Arquivos.
+            #endregion
+
+            #region Area Fisica
+            modelBuilder
+                .Entity<AreaFisica>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<AreaFisica>()
+                .HasMany(x => x.Aulas)
+                .WithOne(x => x.AreaFisica);
+            #endregion
+
+            #region Comentario Aula
+            modelBuilder
+                .Entity<ComentarioAula>()
+                .Property(x => x.Descricao)
+                .HasMaxLength(8000);
+            modelBuilder
+                .Entity<ComentarioAula>()
+                .HasOne(x => x.Aula)
+                .WithMany(x => x.Comentarios)
+                .HasForeignKey(x => x.AulaId);
+            modelBuilder
+                .Entity<ComentarioAula>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Comentarios)
+                .HasForeignKey(x => x.UsuarioId);
+            #endregion
+
+            #region Visualizacao Aula
+            modelBuilder
+                .Entity<VisualizacaoAula>()
+                .Property(x => x.Maquina)
+                .HasMaxLength(200);
+            modelBuilder
+                .Entity<VisualizacaoAula>()
+                .HasOne(x => x.Aula)
+                .WithMany(x => x.Visualizacoes)
+                .HasForeignKey(x => x.AulaId);
+            modelBuilder
+                .Entity<VisualizacaoAula>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Visualizacoes)
+                .HasForeignKey(x => x.UsuarioId);
+            #endregion
         }
     }
 }
