@@ -35,7 +35,6 @@
     <Folder Include="ClientApp\src\app\shared\components\" />
     <Folder Include="ClientApp\src\app\usuario-comum\dashboard\" />
     <Folder Include="ClientApp\src\app\usuario-comum\usuario\" />
-    <Folder Include="Features\AulaFeature\Queries\" />
     <Folder Include="Features\ReplicaFeature\Queries\" />
     <Folder Include="Features\RespostaTopicoFeature\Queries\" />
     <Folder Include="Features\UsuarioFeature\Queries\" />

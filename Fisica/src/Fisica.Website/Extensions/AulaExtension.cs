@@ -26,5 +26,32 @@ namespace Fisica.Website.Extensions
                 ProfessorNome = aula.Professor.Nome
             };
         }
+
+        public static IEnumerable<AulaModel> ToResponse(this IEnumerable<Aula> aulas)
+        {
+            IList<AulaModel> result = new List<AulaModel>();
+
+            foreach (Aula aula in aulas)
+                result.Add(aula.ToResponse());
+
+            return result;
+        }
+
+        public static AulaModel ToResponseWithSessoes(this Aula aula)
+        {
+            AulaModel response = new()
+            {
+                Descricao = aula.Descricao,
+                Titulo = aula.Titulo,
+                AreaFisica = aula.AreaFisica.Descricao,
+                ProfessorNome = aula.Professor.Nome,
+                Sessoes = new List<SessaoAulaModel>()
+            };
+
+            foreach (SessaoAula sessao in aula.Sessoes)
+                response.Sessoes.Add(sessao.ToResponse());
+
+            return response;
+        }
     }
 }

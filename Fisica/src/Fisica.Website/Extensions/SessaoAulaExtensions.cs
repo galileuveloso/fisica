@@ -15,5 +15,16 @@ namespace Fisica.Website.Extensions
                 TipoSessao = sessao.TipoSessao
             };
         }
+
+        public static SessaoAulaModel ToResponse(this SessaoAula sessao)
+        {
+            return new()
+            {
+                AulaId = sessao.AulaId,
+                Conteudo = sessao.Conteudo,
+                Ordem = sessao.Ordem,
+                TipoSessao = sessao.TipoSessao
+            };
+        }
     }
 }

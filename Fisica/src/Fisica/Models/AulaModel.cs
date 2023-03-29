@@ -7,5 +7,6 @@
         public string Descricao { get; set; }
         public string AreaFisica { get; set; }
         public string ProfessorNome { get; set; }
+        public IList<SessaoAulaModel>? Sessoes { get; set; }
     }
 }
