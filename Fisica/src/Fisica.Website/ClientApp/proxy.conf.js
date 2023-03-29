@@ -13,6 +13,7 @@ const PROXY_CONFIG = [
       "/api/topicoforum",
       "/api/resposta-topico",
       "/api/replica",
+      "/api/aula",
    ],
     target: target,
     secure: false,
