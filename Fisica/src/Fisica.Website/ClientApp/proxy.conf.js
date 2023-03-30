@@ -15,6 +15,8 @@ const PROXY_CONFIG = [
       "/api/replica",
       "/api/aula",
       "/api/segue",
+      "/api/widget",
+      "/api/favorito",
    ],
     target: target,
     secure: false,
