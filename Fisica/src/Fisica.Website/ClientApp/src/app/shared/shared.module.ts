@@ -7,6 +7,11 @@ import { NoticiasComponent } from './components/noticias/noticias.component';
 import { NoticiaService } from './services/noticia.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
+import { AulaService } from './services/aula.service';
+import { SegueService } from './services/segue.service';
+import { FavoritoService } from './services/favorito.service';
+import { ComentarioAulaService } from './services/comentario-aula.service';
+import { WidgetService } from './services/widget.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { FormsModule } from '@angular/forms';
     InstituicaoService,
     CidadeService,
     NotificacoesService,
-    NoticiaService
+    NoticiaService,
+    AulaService,
+    SegueService,
+    FavoritoService,
+    ComentarioAulaService,
+    WidgetService
   ]
 })
 export class SharedModule { }

@@ -27,6 +27,8 @@ namespace Fisica.Dados.Extensions
             services.AddScoped(typeof(IRepository<SessaoAula>), typeof(Repository<SessaoAula>));
             services.AddScoped(typeof(IRepository<AreaFisica>), typeof(Repository<AreaFisica>));
             services.AddScoped(typeof(IRepository<VisualizacaoAula>), typeof(Repository<VisualizacaoAula>));
+            services.AddScoped(typeof(IRepository<WidgetAula>), typeof(Repository<WidgetAula>));
+            services.AddScoped(typeof(IRepository<ComentarioAula>), typeof(Repository<ComentarioAula>));
         }
 
         public static void SetupDbContext(this IServiceCollection services, string? connectionString)

@@ -37,7 +37,7 @@ namespace Fisica.Website.Extensions
             return result;
         }
 
-        public static AulaModel ToResponseWithSessoes(this Aula aula)
+        public static AulaModel ToResponseWithSessoesAndComentarios(this Aula aula)
         {
             AulaModel response = new()
             {
@@ -45,11 +45,16 @@ namespace Fisica.Website.Extensions
                 Titulo = aula.Titulo,
                 AreaFisica = aula.AreaFisica.Descricao,
                 ProfessorNome = aula.Professor.Nome,
-                Sessoes = new List<SessaoAulaModel>()
+                ProfessorId = aula.ProfessorId,
+                Sessoes = new List<SessaoAulaModel>(),
+                Comentarios = new List<ComentarioAulaModel>()
             };
 
             foreach (SessaoAula sessao in aula.Sessoes)
                 response.Sessoes.Add(sessao.ToResponse());
+
+            foreach (ComentarioAula comentario in aula.Comentarios)
+                response.Comentarios.Add(comentario.ToResponse());
 
             return response;
         }

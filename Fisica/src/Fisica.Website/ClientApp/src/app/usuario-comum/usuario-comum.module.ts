@@ -8,12 +8,14 @@ import { DashboardUsuarioComponent } from './dashboard/dashboard-usuario/dashboa
 import { UsuarioComumRoutes } from './usuario-comum.routing';
 import { AutocadastroComponent } from './usuario/autocadastro/autocadastro.component';
 import { LoginComponent } from './usuario/login/login.component';
+import { VisualizarAulaComponent } from './aula/visualizar-aula/visualizar-aula.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     AutocadastroComponent,
-    DashboardUsuarioComponent
+    DashboardUsuarioComponent,
+    VisualizarAulaComponent
   ],
   imports: [
     CommonModule,

@@ -36,7 +36,7 @@ namespace Fisica.Website.Features.AulaFeature.Queries
 
             request.Validar();
 
-            Aula aula = await _repositoryAula.GetSingleAsync(x => x.Id == request.AulaId, cancellationToken, x => x.Sessoes, x => x.AreaFisica, x => x.Professor);
+            Aula aula = await _repositoryAula.GetSingleAsync(x => x.Id == request.AulaId, cancellationToken, x => x.Sessoes!, x => x.Comentarios!, x => x.AreaFisica, x => x.Professor);
 
             if (aula is null)
                 throw new ObjectNotFoundException("Aula não encontrada.");
@@ -46,7 +46,7 @@ namespace Fisica.Website.Features.AulaFeature.Queries
             if (!await _repositoryVisualizacao.ExistsAsync(x => x.AulaId == aula.Id && (x.UsuarioId == ControllerExtensions.IdUsuario!.Value || x.Maquina == request.Maquina), cancellationToken))
                 await RegistrarVisualizacao(aula.Id, ControllerExtensions.IdUsuario!.Value, request.Maquina, cancellationToken);
 
-            return aula.ToResponseWithSessoes();
+            return aula.ToResponseWithSessoesAndComentarios();
         }
 
         private async Task RegistrarVisualizacao(long aulaId, long? usuarioId, string maquina, CancellationToken cancellationToken)

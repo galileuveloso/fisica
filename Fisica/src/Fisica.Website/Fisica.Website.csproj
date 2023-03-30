@@ -34,6 +34,7 @@
     <Folder Include="ClientApp\src\app\shared\models\" />
     <Folder Include="ClientApp\src\app\shared\components\" />
     <Folder Include="ClientApp\src\app\usuario-comum\dashboard\" />
+    <Folder Include="ClientApp\src\app\usuario-comum\aula\" />
     <Folder Include="ClientApp\src\app\usuario-comum\usuario\" />
     <Folder Include="Features\AreaFisicaFeature\Commands\" />
     <Folder Include="Features\ReplicaFeature\Queries\" />
