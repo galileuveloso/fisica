@@ -9,6 +9,7 @@ import { InserirUsuarioComponent } from './usuario/inserir-usuario/inserir-usuar
 import { ListarInstituicoesComponent } from './instituicao/listar-instituicoes/listar-instituicoes.component';
 import { InserirInstituicaoComponent } from './instituicao/inserir-instituicao/inserir-instituicao.component';
 import { EditarInstituicaoComponent } from './instituicao/editar-instituicao/editar-instituicao.component';
+import { DashboardAdminComponent } from './dashboard/dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditarInstituicaoComponent } from './instituicao/editar-instituicao/edi
     InserirInstituicaoComponent,
     EditarInstituicaoComponent,
     ListarUsuariosComponent,
-    InserirUsuarioComponent
+    InserirUsuarioComponent,
+    DashboardAdminComponent
   ],
   imports: [
     CommonModule,

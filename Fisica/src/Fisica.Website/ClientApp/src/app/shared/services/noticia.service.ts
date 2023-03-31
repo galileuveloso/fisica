@@ -23,4 +23,9 @@ export class NoticiaService extends AbstractHttpService {
   public getNoticias(): Observable<Noticia[]> {
     return this.get<Noticia[]>('buscar-noticias');
   }
+
+  public getUltimasNoticias(): Observable<Noticia[]> {
+    return this.get<Noticia[]>('ultimas-noticias');
+  }
+
 }

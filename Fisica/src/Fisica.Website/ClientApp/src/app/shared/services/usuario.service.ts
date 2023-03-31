@@ -31,6 +31,14 @@ export class UsuarioService extends AbstractHttpService {
     return this.post<Usuario>('autocadastro', usuario);
   }
 
+  public selecionarProfessores(): Observable<Usuario[]> {
+    return this.get<Usuario[]>('selecionar-professores');
+  }
+
+  public selecionarUsuariosComuns(): Observable<Usuario[]> {
+    return this.get<Usuario[]>('selecionar-usuarios-comuns');
+  }
+
   //Autenticacao
   TOKEN: string = 'TOKEN';
 

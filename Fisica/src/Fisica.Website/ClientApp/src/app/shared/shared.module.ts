@@ -12,6 +12,8 @@ import { SegueService } from './services/segue.service';
 import { FavoritoService } from './services/favorito.service';
 import { ComentarioAulaService } from './services/comentario-aula.service';
 import { WidgetService } from './services/widget.service';
+import { TopicoForumService } from './services/topico-forum.service';
+import { RespostaTopicoService } from './services/resposta-topico.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { WidgetService } from './services/widget.service';
     SegueService,
     FavoritoService,
     ComentarioAulaService,
-    WidgetService
+    WidgetService,
+    TopicoForumService,
+    RespostaTopicoService
   ]
 })
 export class SharedModule { }

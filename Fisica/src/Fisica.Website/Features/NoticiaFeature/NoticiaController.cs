@@ -10,7 +10,6 @@ namespace Fisica.Website.Features.NoticiaFeature
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class NoticiaController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,14 +19,22 @@ namespace Fisica.Website.Features.NoticiaFeature
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost("inserir")]
         public async Task<ActionResult> Post(CadastrarNoticiaCommand request)
         {
             return await this.SendAsync(_mediator, request);
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("buscar-noticias")]
         public async Task<ActionResult> Get()
+        {
+            return await this.SendAsync(_mediator, new SelecionarNoticiasQuery());
+        }
+
+        [HttpGet("ultimas-noticias")]
+        public async Task<ActionResult> GetUltimasNoticias()
         {
             return await this.SendAsync(_mediator, new SelecionarNoticiasQuery());
         }

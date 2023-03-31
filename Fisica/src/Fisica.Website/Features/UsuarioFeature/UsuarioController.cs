@@ -52,5 +52,19 @@ namespace Fisica.Website.Features.UsuarioFeature
         {
             return await this.SendAsync(_mediator, new SelecionarUsuariosQuery());
         }
+
+        [HttpGet("selecionar-professores")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> GetProfesores()
+        {
+            return await this.SendAsync(_mediator, new SelecionarProfessoresQuery());
+        }
+
+        [HttpGet("selecionar-usuarios-comuns")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> GetUsuariosComuns()
+        {
+            return await this.SendAsync(_mediator, new SelecionarUsuariosComunsQuery());
+        }
     }
 }

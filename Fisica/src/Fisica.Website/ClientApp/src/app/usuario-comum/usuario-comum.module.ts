@@ -9,13 +9,23 @@ import { UsuarioComumRoutes } from './usuario-comum.routing';
 import { AutocadastroComponent } from './usuario/autocadastro/autocadastro.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { VisualizarAulaComponent } from './aula/visualizar-aula/visualizar-aula.component';
+import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
+import { AreasFisicaComponent } from './inicio/areas-fisica/areas-fisica.component';
+import { ForumInicialComponent } from './forum/forum-inicial/forum-inicial.component';
+import { TemaForumComponent } from './forum/tema-forum/tema-forum.component';
+import { TopicoForumComponent } from './forum/topico-forum/topico-forum.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     AutocadastroComponent,
     DashboardUsuarioComponent,
-    VisualizarAulaComponent
+    VisualizarAulaComponent,
+    TelaInicialComponent,
+    AreasFisicaComponent,
+    ForumInicialComponent,
+    TemaForumComponent,
+    TopicoForumComponent
   ],
   imports: [
     CommonModule,
