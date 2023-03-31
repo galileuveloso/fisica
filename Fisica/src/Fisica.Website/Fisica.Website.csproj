@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\admin\dashboard\" />
     <Folder Include="ClientApp\src\app\admin\usuario\" />
     <Folder Include="ClientApp\src\app\shared\models\" />
     <Folder Include="ClientApp\src\app\shared\components\" />
@@ -40,7 +41,6 @@
     <Folder Include="Features\AreaFisicaFeature\Commands\" />
     <Folder Include="Features\ReplicaFeature\Queries\" />
     <Folder Include="Features\RespostaTopicoFeature\Queries\" />
-    <Folder Include="Features\UsuarioFeature\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

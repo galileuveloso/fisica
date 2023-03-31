@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Favorito } from '../models/favorito.model';
 import { AbstractHttpService } from './abstract-http.service';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class FavoritoService extends AbstractHttpService {
 
   public removerFavorito(favoritoId: number): Observable<void> {
     return this.delete(`excluir/${favoritoId}`);
+  }
+
+  public selecionarFavoritos(): Observable<Favorito[]> {
+    return this.get<Favorito[]>('selecionar-favoritos');
   }
 }

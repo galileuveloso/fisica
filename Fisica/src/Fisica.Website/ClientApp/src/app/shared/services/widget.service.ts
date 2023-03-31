@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { WidgetAula } from '../models/widget.model';
 import { AbstractHttpService } from './abstract-http.service';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class WidgetService extends AbstractHttpService {
 
   public excluirAula(widgetAulaId: number): Observable<void> {
     return this.delete(`inserir-aula/${widgetAulaId}`);
+  }
+
+  public selecionarWigetsAulas(): Observable<WidgetAula[]> {
+    return this.get<WidgetAula[]>('selecionar-favoritos');
   }
 }

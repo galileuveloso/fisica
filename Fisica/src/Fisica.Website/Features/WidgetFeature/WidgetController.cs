@@ -1,5 +1,6 @@
 ﻿using Fisica.Website.Extensions;
 using Fisica.Website.Features.WidgetFeature.Commands;
+using Fisica.Website.Features.WidgetFeature.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -29,6 +30,12 @@ namespace Fisica.Website.Features.WidgetFeature
         public async Task<ActionResult> Delete(long? widgetAulaId)
         {
             return await this.SendAsync(_mediator, new ExcluirWidgetAulaCommand() { WidgetAulaId = widgetAulaId });
+        }
+
+        [HttpGet("selecionar-widgets-aulas")]
+        public async Task<ActionResult> GetWidgetsAulas()
+        {
+            return await this.SendAsync(_mediator, new SelecionarWidgetsAulaQuery());
         }
     }
 }
