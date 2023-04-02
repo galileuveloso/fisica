@@ -1,0 +1,66 @@
+<div class="container-header" fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+        <div fxFlex="35%" fxLayout="column" fxLayoutAlign="center center">
+            <img class="logo-site" src="../../assets/imagens/header/logosite.png">
+            <h2>Um ambiente online para aprender e discutir Física. Seja bem vindo.</h2>
+        </div>
+        <div fxFlex="19%" fxLayout="column" fxLayoutAlign="center center">
+            <h2>{{ this.resumoTitulo }}</h2>
+            <img class="img-topico" [src]="imagem">
+            <p class="paragrafo-topico">
+                {{ this.resumoTopico }}
+            </p>
+        </div>
+        <div fxFlex="45%" fxLayout="row" fxLayoutAlign="space-around start">
+            <div fxFlex="32%" class="menu-navegacao" fxLayout="column" fxLayoutAlign="center center">
+                <div><b>Seções gerais</b></div>
+                <a routerLink="" (click)="mudarCabecalho(true)">Home</a>
+                <a (mouseover)="mudaFoto('10')" (mouseout)="mudaFoto('0')">
+                    Criar Conta / Login
+                </a>
+                <a (mouseover)="mudaFoto('9')" (mouseout)="mudaFoto('0')" 
+                    routerLink="/forum" (click)="mudarCabecalho(false)">
+                    Fórum
+                </a>
+            </div>
+            <div fxFlex="32%" class="menu-navegacao" fxLayout="column" fxLayoutAlign="center center">
+                <div><b>Áreas da Física</b></div>
+                <a (mouseover)="mudaFoto('1')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/mecanica">
+                    Mecânica
+                </a>
+                <a (mouseover)="mudaFoto('2')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/termodinamica">
+                    Termodinâmica
+                </a>
+                <a (mouseover)="mudaFoto('3')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/ondulatoria">
+                    Ondulatória
+                </a>
+                <a (mouseover)="mudaFoto('4')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/eletromagnetismo">
+                    Eletromagnetismo
+                </a>
+                <a (mouseover)="mudaFoto('5')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/fisicamoderna">
+                    Física Moderna
+                </a>
+            </div>
+            <div fxFlex="32%" class="menu-navegacao" fxLayout="column" fxLayoutAlign="center center">
+                <div><b>Seções especiais</b></div>
+                <a (mouseover)="mudaFoto('6')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/matematica">
+                    Matemática
+                </a>
+                <a (mouseover)="mudaFoto('7')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/especiais">
+                    Especiais
+                </a>
+                <a (mouseover)="mudaFoto('8')" (mouseout)="mudaFoto('0')" (click)="mudarCabecalho(false)"
+                    routerLink="/vestibular">
+                    Exercícios vestibulares
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

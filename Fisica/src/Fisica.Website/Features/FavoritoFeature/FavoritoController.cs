@@ -32,10 +32,10 @@ namespace Fisica.Website.Features.FavoritoFeature
             return await this.SendAsync(_mediator, new ExcluirFavoritoCommand() { FavoritoId = favoritoId });
         }
 
-        [HttpGet("selecionar-favoritos")]
-        public async Task<ActionResult> GetFavoritos(long favoritoId)
-        {
-            return await this.SendAsync(_mediator, new SelecionarFavoritosQuery() { FavoritoId = favoritoId });
-        }
+        //[HttpGet("selecionar-favoritos")]
+        //public async Task<ActionResult> GetFavoritos(long favoritoId)
+        //{
+        //    return await this.SendAsync(_mediator, new SelecionarFavoritosQuery() { FavoritoId = favoritoId });
+        //}
     }
 }
